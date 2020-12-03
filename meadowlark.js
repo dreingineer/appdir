@@ -1,4 +1,5 @@
 const express = require('express');
+const fortune = require('./lib/fortune');
 const app = express();
 
 const handlebars = require('express3-handlebars')
@@ -11,13 +12,13 @@ app.set('port', process.env.PORT || 3000);
 
 app.use(express.static(__dirname + '/public'));
 
-let fortunes = [
-	"Conquer your fears or they will conquer you.", 
-	"Rivers need springs.", 
-	"Do not fear what you don't know.", 
-	"You will have a pleasant surprise.", 
-	"Whenever possible, keep it simple.",
-];
+// let fortunes = [
+// 	"Conquer your fears or they will conquer you.", 
+// 	"Rivers need springs.", 
+// 	"Do not fear what you don't know.", 
+// 	"You will have a pleasant surprise.", 
+// 	"Whenever possible, keep it simple.",
+// ];
 
 app.get('/', (req, res) => {
 	// res.type('text/plain');
@@ -29,8 +30,8 @@ app.get('/about', (req, res) => {
 	// res.type('text/plain');
 	// res.send('About Meadowlark Travel');
 
-	let randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
-	res.render('about', {fortune: randomFortune});
+	// let randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+	res.render('about', {fortune: fortune.getFortune()});
 });
 
 // app.get('/about*', (req, res) => {
@@ -68,4 +69,4 @@ app.listen(app.get('port'), () => {
 });
 
 
-// done at page 28 | Chapter 3: Saving time with express
+// done at page 36 | Chapter 4: Tyding up
